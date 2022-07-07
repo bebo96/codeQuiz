@@ -12,4 +12,4 @@ A javascript quiz game with a high score storage!
 https://bebo96.github.io/codeQuiz/
 
 ## Screenshot:
-![Alt text](./assets/css/images/codeQuizScreenshot"Portfolio Icon")
+![Alt text](./assets/images/codeQuizScreenshot"Portfolio Icon")
