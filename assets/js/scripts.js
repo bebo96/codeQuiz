@@ -39,16 +39,22 @@ const questionsAndAnswers = [{
 var startQuizButton = $('.start-quiz-class');
 var startQuizDisplay = $('.main-page');
 var displayQuiz = document.querySelector(".quiz-page");
-var questionNumber = 0;
 var timeDisplay = document.querySelector("#timer");
 var scoreDisplay = document.querySelector("#score-display");
-var time = questionsAndAnswers.length * 11;
 var correctWrong = document.querySelector('#correct-wrong-text');
 var questionText = document.querySelector("#display-question");
 var correctWrongDiv = document.querySelector('.correct-wrong');
-var thatTime;
 var userInput = document.querySelector("#user-input");
 
+//This variable will be used to determine how much time player should start with 
+var time = questionsAndAnswers.length * 11;
+//This variable will be used to stop the timer 
+var thatTime;
+//global questionNumber variable 
+var questionNumber = 0;
+
+//This function is responsible for the countdown timer
+//if time is less than 1, set time to 0 to end quiz 
 function countdown() {
     time--;
     startTimer();
@@ -56,11 +62,12 @@ function countdown() {
         time = 0;
     }
 }
-//Start timer  
+//Display timer when it is started 
 function startTimer() {
     timeDisplay.textContent = "Time: " + time;
 }
 
+//This function will stop the timer and store its value to be used to display highscore 
 function stopTimer(){
     var thisTime = time; 
     thatTime = thisTime;
@@ -68,6 +75,7 @@ function stopTimer(){
     console.log(thisTime);
 }
 
+//Start Quiz by hiding the main start quiz page, setting question number to 0 to start with first question, display question and start countdown timer 
 function startQuiz() {
     startQuizDisplay.hide();
     $(startQuizDisplay).css("display", "none");
@@ -91,20 +99,24 @@ function displayQuestion() {
     }
 }
 
+//Hide correct and wrong messages when answer is selected 
 function hideCorrectWrong(){
     correctWrongDiv.style.display = "none";
 }
 
+//Show correct message when answer is selected 
 function showCorrect(){
     correctWrongDiv.style.display = "flex";
     correctWrong.textContent = "Correct!";
 }
 
+//Show wrong message when answer is selected 
 function showWrong(){
     correctWrongDiv.style.display = "flex";
     correctWrong.textContent = "Wrong!";
 }
 
+//Check user choice by comparing with solution stored in array 
 function checksolution() {
     if (this.textContent == questionsAndAnswers[questionNumber].solution && questionNumber < questionsAndAnswers.length) {
         showCorrect();
@@ -129,12 +141,14 @@ function checksolution() {
       }
 }
 
+//Display the score by setting it's display style from none to flex and setting the text content to the score message 
 function displayScore(){
     $('.display-score').css("display", "flex");
     scoreDisplay.textContent = "Congratulations! Your final score is " + thatTime;
     
 }
 
+//End quiz by stopping timer, hiding quiz-page div, and calling displayScore() 
 function endQuiz(){
     console.log("done");
     stopTimer();
@@ -142,10 +156,9 @@ function endQuiz(){
     displayScore();   
 }
 
-
+//Event listeners 
 startQuizButton.click(".start-quiz-class", startQuiz);
 startQuizButton.click(".start-quiz-class", startTimer);
-
 $('#option0,#option1,#option2,#option3').click(checksolution);
 
 // displayQuiz.click(".quiz-page", loadNext);
