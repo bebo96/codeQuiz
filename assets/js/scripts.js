@@ -93,8 +93,8 @@ function displayQuestion() {
     questionText.textContent = question.questionText;
 
     for (let i = 0; i < choices.length; i++) {
-        let option = choices[i];
-        let optionButton = document.querySelector("#option" + i);
+        var optionButton = document.querySelector("#option" + i);
+        var option = choices[i];
         optionButton.textContent = option;
     }
 }
