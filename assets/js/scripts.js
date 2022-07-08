@@ -88,8 +88,7 @@ function startQuiz() {
 //display the question and solution choices for the current question
 function displayQuestion() {
     var question = questionsAndAnswers[questionNumber];
-    var choices = question.choices;
-    
+    var choices = question.choices;    
     questionText.textContent = question.questionText;
 
     for (let i = 0; i < choices.length; i++) {
